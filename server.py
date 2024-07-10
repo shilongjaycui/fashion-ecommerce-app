@@ -10,7 +10,7 @@ from flask import Flask, redirect, request
 
 import stripe
 # This is your test secret API key.
-stripe.api_key = 'sk_test_51PalnIRuZYjl85mcFWYSAAPK93MVkbyubSteYLiv75OXP1C5Y17b8z11ZeyCA3AX236gH5ylmmivqUWluI72YtiA00hjR9B1vl'
+stripe.api_key = os.environ["STRIPE_API_KEY"]
 PRODUCT_ID = "authentic-greek-gyro"
 PRICE_ID = "authentic-greek-gyro-price"
 try:

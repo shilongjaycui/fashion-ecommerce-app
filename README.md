@@ -48,3 +48,9 @@ make run-client
 ```
 
 5. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+
+## Next steps
+- Create the `Product` prop instances from a database instead of hard-coding them
+- Use [Tailwind CSS](https://tailwindcss.com/) so we can eliminate all the `.css` files
+- Make the web app compatible with tablets and smartphones
+- Convert the web app from JavaScript to TypeScript to save debugging time

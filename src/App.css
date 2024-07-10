@@ -1,4 +1,4 @@
-body {
+/* body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,17 +9,15 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 section {
   background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 112px;
-  border-radius: 6px;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 16px;
 }
-.product {
+/* .product {
   display: flex;
 }
 .description {
@@ -77,4 +75,4 @@ button {
 }
 button:hover {
   opacity: 0.8;
-}
+} */
