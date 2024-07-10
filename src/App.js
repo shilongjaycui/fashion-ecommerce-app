@@ -104,7 +104,7 @@ export default function App() {
   return message ? (
     <Message message={message} />
   ) : (
-    <div>
+    <div className="product-display-page">
       <Header />
       <ProductDisplay />
     </div>
