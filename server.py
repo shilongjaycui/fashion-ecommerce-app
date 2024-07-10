@@ -11,6 +11,21 @@ from flask import Flask, redirect, request
 import stripe
 # This is your test secret API key.
 stripe.api_key = 'sk_test_51PalnIRuZYjl85mcFWYSAAPK93MVkbyubSteYLiv75OXP1C5Y17b8z11ZeyCA3AX236gH5ylmmivqUWluI72YtiA00hjR9B1vl'
+PRODUCT_ID = "authentic-greek-gyro"
+PRICE_ID = "authentic-greek-gyro-price"
+try:
+    stripe.Product.create(name="Greek Gyro", id=PRODUCT_ID)
+except stripe.error.InvalidRequestError:
+    ...
+stripe.Price.create(
+    product=PRODUCT_ID,
+    unit_amount=1000,
+    currency="usd",
+)
+prices = stripe.Price.list().data
+print(f"prices: {prices}")
+assert len(prices) >= 1
+price_id = prices[0].id
 
 app = Flask(__name__,
             static_url_path='',
@@ -25,7 +40,7 @@ def create_checkout_session():
             line_items=[
                 {
                     # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                    'price': '{{PRICE_ID}}',
+                    'price': price_id,
                     'quantity': 1,
                 },
             ],
@@ -38,6 +53,7 @@ def create_checkout_session():
         return str(e)
 
     return redirect(checkout_session.url, code=303)
+
 
 if __name__ == '__main__':
     app.run(port=4242)

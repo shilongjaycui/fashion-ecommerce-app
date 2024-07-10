@@ -10,6 +10,3 @@ build-client:
 
 run-client:
 	npm start
-
-open-web-app:
-	open "http://localhost:3000/checkout"
