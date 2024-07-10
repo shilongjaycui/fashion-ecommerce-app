@@ -1,23 +1,79 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import Product from "./components/Product"
+import Header from "./components/Header"
+
+const product1 = {
+  image: 'https://i5.walmartimages.com/seo/Chobani-Hero-Batch-Vanilla-Greek-Yogurt-with-Mixed-Berry-on-the-Bottom-5-3-oz-4-Count-Plastic_a354407b-800a-42c8-8a6e-b3d2da98940e.7da1e95701a53114865ab0b7210b4f14.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF',
+  title: 'Chobani Non-Fat Greek Yogurt',
+  description: 'This is really good.',
+  price: '3.98'
+};
+const product2 = {
+  image: 'https://i5.walmartimages.com/seo/Chobani-Hero-Batch-Vanilla-Greek-Yogurt-with-Mixed-Berry-on-the-Bottom-5-3-oz-4-Count-Plastic_a354407b-800a-42c8-8a6e-b3d2da98940e.7da1e95701a53114865ab0b7210b4f14.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF',
+  title: 'Chobani Non-Fat Greek Yogurt',
+  description: 'This is really good.',
+  price: '3.98'
+};
+const product3 = {
+  image: 'https://i5.walmartimages.com/seo/Chobani-Hero-Batch-Vanilla-Greek-Yogurt-with-Mixed-Berry-on-the-Bottom-5-3-oz-4-Count-Plastic_a354407b-800a-42c8-8a6e-b3d2da98940e.7da1e95701a53114865ab0b7210b4f14.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF',
+  title: 'Chobani Non-Fat Greek Yogurt',
+  description: 'This is really good.',
+  price: '3.98'
+};
+const product4 = {
+  image: 'https://i5.walmartimages.com/seo/Chobani-Hero-Batch-Vanilla-Greek-Yogurt-with-Mixed-Berry-on-the-Bottom-5-3-oz-4-Count-Plastic_a354407b-800a-42c8-8a6e-b3d2da98940e.7da1e95701a53114865ab0b7210b4f14.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF',
+  title: 'Chobani Non-Fat Greek Yogurt',
+  description: 'This is really good.',
+  price: '3.98'
+};
+const product5 = {
+  image: 'https://i5.walmartimages.com/seo/Chobani-Hero-Batch-Vanilla-Greek-Yogurt-with-Mixed-Berry-on-the-Bottom-5-3-oz-4-Count-Plastic_a354407b-800a-42c8-8a6e-b3d2da98940e.7da1e95701a53114865ab0b7210b4f14.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF',
+  title: 'Chobani Non-Fat Greek Yogurt',
+  description: 'This is really good.',
+  price: '3.98'
+};
+const product6 = {
+  image: 'https://i5.walmartimages.com/seo/Chobani-Hero-Batch-Vanilla-Greek-Yogurt-with-Mixed-Berry-on-the-Bottom-5-3-oz-4-Count-Plastic_a354407b-800a-42c8-8a6e-b3d2da98940e.7da1e95701a53114865ab0b7210b4f14.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF',
+  title: 'Chobani Non-Fat Greek Yogurt',
+  description: 'This is really good.',
+  price: '3.98'
+};
+const product7 = {
+  image: 'https://i5.walmartimages.com/seo/Chobani-Hero-Batch-Vanilla-Greek-Yogurt-with-Mixed-Berry-on-the-Bottom-5-3-oz-4-Count-Plastic_a354407b-800a-42c8-8a6e-b3d2da98940e.7da1e95701a53114865ab0b7210b4f14.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF',
+  title: 'Chobani Non-Fat Greek Yogurt',
+  description: 'This is really good.',
+  price: '3.98'
+};
+const product8 = {
+  image: 'https://i5.walmartimages.com/seo/Chobani-Hero-Batch-Vanilla-Greek-Yogurt-with-Mixed-Berry-on-the-Bottom-5-3-oz-4-Count-Plastic_a354407b-800a-42c8-8a6e-b3d2da98940e.7da1e95701a53114865ab0b7210b4f14.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF',
+  title: 'Chobani Non-Fat Greek Yogurt',
+  description: 'This is really good.',
+  price: '3.98'
+};
+const product9 = {
+  image: 'https://i5.walmartimages.com/seo/Chobani-Hero-Batch-Vanilla-Greek-Yogurt-with-Mixed-Berry-on-the-Bottom-5-3-oz-4-Count-Plastic_a354407b-800a-42c8-8a6e-b3d2da98940e.7da1e95701a53114865ab0b7210b4f14.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF',
+  title: 'Chobani Non-Fat Greek Yogurt',
+  description: 'This is really good.',
+  price: '3.98'
+};
 
 const ProductDisplay = () => (
   <section>
-    <div className="product">
-      <img
-        src="https://i.imgur.com/EHyR2nP.png"
-        alt="The cover of Stubborn Attachments"
-      />
-      <div className="description">
-      <h3>Stubborn Attachments</h3>
-      <h5>$20.00</h5>
-      </div>
-    </div>
-    <form action="/create-checkout-session" method="POST">
+    <Product product={product1}/>
+    <Product product={product2}/>
+    <Product product={product3}/>
+    <Product product={product4}/>
+    <Product product={product5}/>
+    <Product product={product6}/>
+    <Product product={product7}/>
+    <Product product={product8}/>
+    <Product product={product9}/>
+    {/* <form action="/create-checkout-session" method="POST">
       <button type="submit">
         Checkout
       </button>
-    </form>
+    </form> */}
   </section>
 );
 
@@ -48,6 +104,9 @@ export default function App() {
   return message ? (
     <Message message={message} />
   ) : (
-    <ProductDisplay />
+    <div>
+      <Header />
+      <ProductDisplay />
+    </div>
   );
 }
