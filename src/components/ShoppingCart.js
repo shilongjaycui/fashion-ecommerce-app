@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './ShoppingCart.css'; // Import CSS for styling
 import { FaTimes } from 'react-icons/fa'; // Import exit icon from react-icons
 
-const ShoppingCart = ({ isVisible, items, onClose }) => {
+const ShoppingCart = ({ isVisible, cartItems, onClose }) => {
   const cartRef = useRef(null);
 
   useEffect(() => {
@@ -27,17 +27,17 @@ const ShoppingCart = ({ isVisible, items, onClose }) => {
           <FaTimes size={16} />
         </button>
       </div>
-      {items.length === 0 ? (
+      {/* {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <ul>
-          {items.map((item, index) => (
+          {cartItems.map((item, index) => (
             <li key={index}>
               {item.name} - ${item.price}
             </li>
           ))}
         </ul>
-      )}
+      )} */}
     </div>
   );
 };

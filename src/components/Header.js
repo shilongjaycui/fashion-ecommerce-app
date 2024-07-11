@@ -3,9 +3,8 @@ import './Header.css'; // Import CSS for styling
 import { FaShoppingCart } from 'react-icons/fa'; // Import shopping cart icon from react-icons
 import ShoppingCart from './ShoppingCart'; // Import the ShoppingCart component
 
-const Header = () => {
+const Header = (cartItems) => {
   const [isCartVisible, setCartVisible] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
 
   const toggleCartVisibility = () => {
     setCartVisible(prevState => !prevState);
@@ -21,7 +20,7 @@ const Header = () => {
       <div className="cart" onClick={toggleCartVisibility}>
         <FaShoppingCart size={24} />
       </div>
-      <ShoppingCart isVisible={isCartVisible} items={cartItems} onClose={closeCart} />
+      <ShoppingCart isVisible={isCartVisible} cartItems={cartItems} onClose={closeCart} />
     </header>
   );
 };

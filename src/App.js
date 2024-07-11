@@ -58,25 +58,6 @@ const product9 = {
   price: '3.98'
 };
 
-const ProductDisplay = () => (
-  <section>
-    <Product product={product1}/>
-    <Product product={product2}/>
-    <Product product={product3}/>
-    <Product product={product4}/>
-    <Product product={product5}/>
-    <Product product={product6}/>
-    <Product product={product7}/>
-    <Product product={product8}/>
-    <Product product={product9}/>
-    {/* <form action="/create-checkout-session" method="POST">
-      <button type="submit">
-        Checkout
-      </button>
-    </form> */}
-  </section>
-);
-
 const Message = ({ message }) => (
   <section>
     <p>{message}</p>
@@ -85,6 +66,17 @@ const Message = ({ message }) => (
 
 export default function App() {
   const [message, setMessage] = useState("");
+  const [cartItems, setCartItems] = useState([]);
+
+  const onAddToCart = (product) => {
+    console.log(`Adding ${product.title} to cart...`)
+    setCartItems([...cartItems, product])
+    console.log(`Added ${product.title} to cart.`)
+  }
+
+  useEffect(() => {
+    console.log(`Shopping cart updated: ${JSON.stringify(cartItems)}`);
+  }, [cartItems]);
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -105,8 +97,23 @@ export default function App() {
     <Message message={message} />
   ) : (
     <div className="product-display-page">
-      <Header />
-      <ProductDisplay />
+      <Header cartItems={cartItems}/>
+      <section>
+        <Product product={product1} onAddToCart={onAddToCart}/>
+        <Product product={product2} onAddToCart={onAddToCart}/>
+        <Product product={product3} onAddToCart={onAddToCart}/>
+        <Product product={product4} onAddToCart={onAddToCart}/>
+        <Product product={product5} onAddToCart={onAddToCart}/>
+        <Product product={product6} onAddToCart={onAddToCart}/>
+        <Product product={product7} onAddToCart={onAddToCart}/>
+        <Product product={product8} onAddToCart={onAddToCart}/>
+        <Product product={product9} onAddToCart={onAddToCart}/>
+        {/* <form action="/create-checkout-session" method="POST">
+          <button type="submit">
+            Checkout
+          </button>
+        </form> */}
+      </section>
     </div>
   );
 }
