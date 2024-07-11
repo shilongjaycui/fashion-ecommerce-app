@@ -33,11 +33,29 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
       document.removeEventListener('mousedown', handleClickOutside)
     };
   }, [onClose]);
+  
+  const handleCheckout = async () => {
+    try {
+      const response = await fetch('http://localhost:4242/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cartItems }),
+      });
 
+      const { url } = await response.json();
+      // Redirect to Stripe Checkout
+      window.location.href = url;
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+    }
+  };
+  
   const totalCost = Object.values(cartItems).reduce((acc, { item, count }) => {
     return acc + item.price * count;
   }, 0);
-
+  
   return (
     <div ref={cartRef} className={`shopping-cart ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="shopping-cart-header">
@@ -60,11 +78,9 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
           </ul>
           <div>
             <p>Total: ${totalCost.toFixed(2)}</p>
-            <form action="/create-checkout-session" method="POST">
-              <button type="submit">
-                Checkout
-              </button>
-            </form>
+            <button onClick={handleCheckout}>
+              Checkout
+            </button>
             <button onClick={() => onClearCart()}>Clear Shopping Cart</button>
           </div>
         </div>
