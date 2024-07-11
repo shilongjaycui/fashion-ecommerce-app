@@ -37,13 +37,20 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ isVisible, cartItems, onClo
       {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
-        <ul>
-          {cartItems.map((item) => (
-            <li key={item.imageLink}>
-              {item.title} - ${item.price}
-            </li>
-          ))}
-        </ul>
+        <div>
+          <ul>
+            {cartItems.map((item) => (
+              <li key={item.imageLink}>
+                {item.title} - ${item.price}
+              </li>
+            ))}
+          </ul>
+          <form action="/create-checkout-session" method="POST">
+            <button type="submit">
+              Checkout
+            </button>
+          </form>
+        </div>
       )}
     </div>
   );
