@@ -1,13 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import './ShoppingCart.css'; // Import CSS for styling
 import { FaTimes } from 'react-icons/fa'; // Import exit icon from react-icons
+import { Item } from '../App';
 
-const ShoppingCart = ({ isVisible, cartItems, onClose }) => {
-  const cartRef = useRef(null);
+interface ShoppingCartProps {
+  isVisible: boolean;
+  cartItems: Item[];
+  onClose: () => void;
+};
+
+const ShoppingCart: React.FC<ShoppingCartProps> = ({ isVisible, cartItems, onClose }) => {
+  const cartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (cartRef.current && !cartRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
         onClose();
       }
     };
@@ -27,17 +34,17 @@ const ShoppingCart = ({ isVisible, cartItems, onClose }) => {
           <FaTimes size={16} />
         </button>
       </div>
-      {/* {cartItems.length === 0 ? (
+      {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <ul>
-          {cartItems.map((item, index) => (
-            <li key={index}>
-              {item.name} - ${item.price}
+          {cartItems.map((item) => (
+            <li key={item.imageLink}>
+              {item.title} - ${item.price}
             </li>
           ))}
         </ul>
-      )} */}
+      )}
     </div>
   );
 };

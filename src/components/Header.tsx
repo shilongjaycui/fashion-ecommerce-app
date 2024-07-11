@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import './Header.css'; // Import CSS for styling
 import { FaShoppingCart } from 'react-icons/fa'; // Import shopping cart icon from react-icons
+import { Item } from '../App';
 import ShoppingCart from './ShoppingCart'; // Import the ShoppingCart component
 
-const Header = (cartItems) => {
-  const [isCartVisible, setCartVisible] = useState(false);
+interface HeaderProps {
+  cartItems: Item[];
+};
+
+const Header: React.FC<HeaderProps> = ({ cartItems }) => {
+  const [isCartVisible, setCartVisible] = useState<boolean>(false);
 
   const toggleCartVisibility = () => {
     setCartVisible(prevState => !prevState);
