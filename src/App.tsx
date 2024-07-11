@@ -10,6 +10,11 @@ export interface Item {
   price: number;
 }
 
+export interface CartItem {
+  item: Item;
+  count: number;
+}
+
 const chanelHandbag: Item = {
   imageLink: 'https://www.chanel.com/images//t_one///q_auto:good,f_autoplus,fl_lossy,dpr_1.1/w_1240/mini-classic-handbag-pink-fuchsia-purple-wool-cotton-mixed-fibers-gold-tone-metal-wool-cotton-mixed-fibers-gold-tone-metal-packshot-artistique-vue1-a69900b17528ny718-9542488915998.jpg',
   title: 'Mini Classic Handbag',
@@ -77,24 +82,63 @@ const Message: React.FC<MessageProps> = ({ message }) => (
 
 export default function App() {
   const [message, setMessage] = useState<string>("");
-  const [cartItems, setCartItems] = useState<Item[]>([]);
+  const [cartItems, setCartItems] = useState<{ [key: string]: CartItem }>({});
 
   const handleAddToCart = (item: Item) => {
     console.log(`Adding ${item.title} to cart...`)
-    setCartItems([...cartItems, item])
+    setCartItems(prevCartItems => {
+      const existingCartItem = prevCartItems[item.imageLink];
+      if (existingCartItem) {
+        // If item is already in the cart, increment its count
+        return {
+          ...prevCartItems,
+          [item.imageLink]: {
+            item: item,
+            count: existingCartItem.count + 1
+          }
+        };
+      } else {
+        // If item is not in the cart, add it with a count of 1
+        return {
+          ...prevCartItems,
+          [item.imageLink]: {
+            item: item,
+            count: 1
+          }
+        };
+      }
+    });
     console.log(`Added ${item.title} to cart.`)
   }
 
   const handleRemoveFromCart = (item: Item) => {
     console.log(`Removing ${item.title} from cart...`)
-    const updatedCart = cartItems.filter(i => i.imageLink !== item.imageLink);
-    setCartItems(updatedCart);
+    setCartItems(prevCartItems => {
+      const existingCartItem = prevCartItems[item.imageLink];
+      if (existingCartItem) {
+        if (existingCartItem.count > 1) {
+          // Decrement the count if it's greater than 1
+          return {
+            ...prevCartItems,
+            [item.imageLink]: {
+              item: item,
+              count: existingCartItem.count - 1
+            }
+          };
+        } else {
+          // Remove the item from the cart if count is 1
+          const { [item.imageLink]: _, ...rest } = prevCartItems;
+          return rest;
+        }
+      }
+      return prevCartItems;
+    });
     console.log(`Removed ${item.title} from cart.`)
   }
 
   const handleClearCart = () => {
     console.log("Clearing cart...")
-    setCartItems([]);
+    setCartItems({});
     console.log("Cart cleared.")
   };
 

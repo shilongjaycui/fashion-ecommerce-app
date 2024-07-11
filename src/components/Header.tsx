@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './Header.css'; // Import CSS for styling
 import { FaShoppingCart } from 'react-icons/fa'; // Import shopping cart icon from react-icons
-import { Item } from '../App';
+import { Item, CartItem } from '../App';
 import ShoppingCart from './ShoppingCart'; // Import the ShoppingCart component
 
 interface HeaderProps {
-  cartItems: Item[];
+  cartItems: { [key: string]: CartItem };
   onRemoveFromCart: (item: Item) => void;
   onClearCart: () => void;
 };

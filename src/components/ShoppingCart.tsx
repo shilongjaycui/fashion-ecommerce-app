@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import './ShoppingCart.css'; // Import CSS for styling
 import { FaTimes } from 'react-icons/fa'; // Import exit icon from react-icons
-import { Item } from '../App';
+import { Item, CartItem } from '../App';
 
 interface ShoppingCartProps {
   isVisible: boolean;
-  cartItems: Item[];
+  cartItems: { [key: string]: CartItem };
   onClose: () => void;
   onRemoveFromCart: (item: Item) => void;
   onClearCart: () => void;
@@ -34,7 +34,9 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
     };
   }, [onClose]);
 
-  const totalCost = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const totalCost = Object.values(cartItems).reduce((acc, { item, count }) => {
+    return acc + item.price * count;
+  }, 0);
 
   return (
     <div ref={cartRef} className={`shopping-cart ${isVisible ? 'visible' : 'hidden'}`}>
@@ -44,14 +46,14 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
           <FaTimes size={16} />
         </button>
       </div>
-      {cartItems.length === 0 ? (
+      {Object.keys(cartItems).length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <div>
           <ul>
-            {cartItems.map((item) => (
+            {Object.values(cartItems).map(({ item, count }) => (
               <li key={item.imageLink}>
-                <span>{item.title} - ${item.price}</span>
+                <span>{item.title} - ${item.price} x {count} = {item.price * count}</span>
                 <button onClick={() => onRemoveFromCart(item)}>Remove</button>
               </li>
             ))}
