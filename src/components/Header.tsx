@@ -6,9 +6,11 @@ import ShoppingCart from './ShoppingCart'; // Import the ShoppingCart component
 
 interface HeaderProps {
   cartItems: Item[];
+  onRemoveFromCart: (item: Item) => void;
+  onClearCart: () => void;
 };
 
-const Header: React.FC<HeaderProps> = ({ cartItems }) => {
+const Header: React.FC<HeaderProps> = ({ cartItems, onRemoveFromCart, onClearCart }) => {
   const [isCartVisible, setCartVisible] = useState<boolean>(false);
 
   const toggleCartVisibility = () => {
@@ -25,7 +27,13 @@ const Header: React.FC<HeaderProps> = ({ cartItems }) => {
       <div className="cart" onClick={toggleCartVisibility}>
         <FaShoppingCart size={24} />
       </div>
-      <ShoppingCart isVisible={isCartVisible} cartItems={cartItems} onClose={closeCart} />
+      <ShoppingCart 
+        isVisible={isCartVisible} 
+        cartItems={cartItems} 
+        onClose={closeCart} 
+        onRemoveFromCart={onRemoveFromCart}
+        onClearCart={onClearCart}
+      />
     </header>
   );
 };

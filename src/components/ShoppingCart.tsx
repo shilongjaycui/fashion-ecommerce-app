@@ -7,9 +7,17 @@ interface ShoppingCartProps {
   isVisible: boolean;
   cartItems: Item[];
   onClose: () => void;
+  onRemoveFromCart: (item: Item) => void;
+  onClearCart: () => void;
 };
 
-const ShoppingCart: React.FC<ShoppingCartProps> = ({ isVisible, cartItems, onClose }) => {
+const ShoppingCart: React.FC<ShoppingCartProps> = ({ 
+  isVisible, 
+  cartItems, 
+  onClose, 
+  onRemoveFromCart, 
+  onClearCart,
+}) => {
   const cartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,6 +34,8 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ isVisible, cartItems, onClo
     };
   }, [onClose]);
 
+  const totalCost = cartItems.reduce((acc, item) => acc + item.price, 0);
+
   return (
     <div ref={cartRef} className={`shopping-cart ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="shopping-cart-header">
@@ -41,15 +51,20 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ isVisible, cartItems, onClo
           <ul>
             {cartItems.map((item) => (
               <li key={item.imageLink}>
-                {item.title} - ${item.price}
+                <span>{item.title} - ${item.price}</span>
+                <button onClick={() => onRemoveFromCart(item)}>Remove</button>
               </li>
             ))}
           </ul>
-          <form action="/create-checkout-session" method="POST">
-            <button type="submit">
-              Checkout
-            </button>
-          </form>
+          <div>
+            <p>Total: ${totalCost.toFixed(2)}</p>
+            <form action="/create-checkout-session" method="POST">
+              <button type="submit">
+                Checkout
+              </button>
+            </form>
+            <button onClick={() => onClearCart()}>Clear Shopping Cart</button>
+          </div>
         </div>
       )}
     </div>

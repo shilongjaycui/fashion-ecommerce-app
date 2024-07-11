@@ -85,6 +85,19 @@ export default function App() {
     console.log(`Added ${item.title} to cart.`)
   }
 
+  const handleRemoveFromCart = (item: Item) => {
+    console.log(`Removing ${item.title} from cart...`)
+    const updatedCart = cartItems.filter(i => i.imageLink !== item.imageLink);
+    setCartItems(updatedCart);
+    console.log(`Removed ${item.title} from cart.`)
+  }
+
+  const handleClearCart = () => {
+    console.log("Clearing cart...")
+    setCartItems([]);
+    console.log("Cart cleared.")
+  };
+
   useEffect(() => {
     console.log(`Shopping cart updated: ${JSON.stringify(cartItems)}`);
   }, [cartItems]);
@@ -108,7 +121,7 @@ export default function App() {
     <Message message={message} />
   ) : (
     <div className="product-display-page">
-      <Header cartItems={cartItems}/>
+      <Header cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} onClearCart={handleClearCart} />
       <section>
         <Product item={chanelHandbag} onAddToCart={handleAddToCart}/>
         <Product item={diorCologne} onAddToCart={handleAddToCart}/>
