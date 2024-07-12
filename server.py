@@ -6,54 +6,74 @@ Stripe Sample.
 Python 3.6 or newer required.
 """
 import os
-from flask import Flask, redirect, request
-
+from flask import Flask, redirect, request, jsonify
+from flask_cors import CORS
 import stripe
-# This is your test secret API key.
+import logging
+
+
 stripe.api_key = os.environ["STRIPE_API_KEY"]
-PRODUCT_ID = "authentic-greek-gyro"
-PRICE_ID = "authentic-greek-gyro-price"
-try:
-    stripe.Product.create(name="Greek Gyro", id=PRODUCT_ID)
-except stripe.error.InvalidRequestError:
-    ...
-stripe.Price.create(
-    product=PRODUCT_ID,
-    unit_amount=1000,
-    currency="usd",
+
+app = Flask(
+    __name__,
+    static_url_path='',
+    static_folder='public',
 )
-prices = stripe.Price.list().data
-print(f"prices: {prices}")
-assert len(prices) >= 1
-price_id = prices[0].id
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # Allow requests from localhost:3000
 
-app = Flask(__name__,
-            static_url_path='',
-            static_folder='public')
+PORT = "4242"
+DOMAIN = f'http://localhost:{PORT}'
 
-YOUR_DOMAIN = 'http://localhost:4242'
+logging.basicConfig(level=logging.INFO)
+
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
+    logging.info("Received request")
+    data = request.get_json()
+    logging.info(f"Request data: {data}")
+    cart_items = data['cartItems']
+    
+    line_items = []
+    for _, cart_item in cart_items.items():
+        item = cart_item['item']
+        count = cart_item['count']
+        line_items.append({
+            'price_data': {
+                'currency': 'usd',
+                'product_data': {
+                    'name': item['title'],
+                },
+                'unit_amount': int(item['price'] * 100),  # Stripe uses cents
+            },
+            'quantity': count,
+        })
+
     try:
         checkout_session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                    'price': price_id,
-                    'quantity': 1,
-                },
-            ],
+            payment_method_types=['card'],
+            line_items=line_items,
             mode='payment',
-            success_url=YOUR_DOMAIN + '?success=true',
-            cancel_url=YOUR_DOMAIN + '?canceled=true',
-            automatic_tax={'enabled': True},
+            success_url=DOMAIN + '/success',
+            cancel_url=DOMAIN + '/canceled',
+            # automatic_tax={'enabled': True},
         )
+        logging.info(f"Checkout session created: {checkout_session.url}")
+        return jsonify({'url': checkout_session.url})
     except Exception as e:
-        return str(e)
+        logging.error(f"Error creating checkout session: {e}")
+        return jsonify(error=str(e)), 403
 
-    return redirect(checkout_session.url, code=303)
+
+@app.route('/success')
+def success():
+    return app.send_static_file('success.html')
+
+
+@app.route('/canceled')
+def canceled():
+    return app.send_static_file('canceled.html')
 
 
 if __name__ == '__main__':
-    app.run(port=4242)
+    app.run(port=PORT)
