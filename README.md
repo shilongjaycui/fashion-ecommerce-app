@@ -21,46 +21,66 @@ To showcase Stripe payments' capabilities
 - [x] CI/CD: GitHub Actions
   - [x] linting
   - [x] testing: pytest
-- [ ] deployment: AWS Cloud Development Kit
 - [x] containerization: Docker
+- [ ] deployment: AWS Cloud Development Kit
 - [ ] monitoring: Datadog
 
 ## Running the web app locally
 
-1. Build the server:
-```
-make build-server
-```
+1. Clone this repo on your local machine:
+   ```
+   $ git clone git@github.com:shilongjaycui/stripe-demo-app.git
+   ```
+2. Navigate into the repo:
+   ```
+   $ cd stripe-demo-app
+   ```
+3. Create a Python virtual environment:
+   ```
+   $ python -m venv venv
+   ```
+4. Activate the virtual environment:
+   ```
+   $ source venv/bin/activate
+   ```
+5. Build the server:
+   ```
+   make build-server
+   ```
+6. Run the server:
+   ```
+   make run-server-locally
+   ```
+7. Build the client app:
+   ```
+   make build-client
+   ```
+8. Run the client app:
+   ```
+   make run-client-locally
+   ```
 
-2. Run the server:
-```
-make run-server-locally
-```
-
-3. Build the client app:
-```
-make build-client
-```
-
-4. Run the client app:
-```
-make run-client-locally
-```
-
-5. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+1. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
 
 ## Running the web app in Docker containers
 
-1. Build and spin up both the backend container and the frontend container:
-```
-docker-compose up --build
-```
-
-2. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
-3. Tear down the containers after use:
-```
-docker-compose down
-```
+1. Clone this repo on your local machine:
+   ```
+   $ git clone git@github.com:shilongjaycui/stripe-demo-app.git
+   ```
+2. Navigate into the repo:
+   ```
+   $ cd stripe-demo-app
+   ```
+3. Build and spin up both the backend container and the frontend container:
+   ```
+   docker-compose up --build
+   ```
+4. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+5. Tear down the containers after use:
+   ```
+   docker-compose down
+   ```
 
 ## Next steps
 - Create the `Product` prop instances from a database instead of hard-coding them
