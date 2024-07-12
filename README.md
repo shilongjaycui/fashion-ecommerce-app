@@ -55,3 +55,4 @@ make run-client
 - Make the web app compatible with tablets and smartphones
 - Decide to have the `ShoppingCart.tsx` component be a child component of whether the `App.tsx` component or the `Header.tsx` component. Not sure which approach improves debuggability at the moment
 - Test the React components, props, and states by writing unit tests using the [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- Right now the `STRIPE_API_KEY` secret is baked into `docker build`. Is that safe? If not, what's the safe way to pass in the secret?

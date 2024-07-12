@@ -1,68 +1,24 @@
-# Use Debian as base image
-FROM debian:bullseye-slim
+# Use the official Python image
+FROM python:3.9-slim
 
-# Install build dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libssl-dev \
-    zlib1g-dev \
-    libncurses5-dev \
-    libncursesw5-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    libgdbm-dev \
-    libdb5.3-dev \
-    libbz2-dev \
-    libexpat1-dev \
-    liblzma-dev \
-    tk-dev \
-    wget \
-    make \
-    && rm -rf /var/lib/apt/lists/*
-
-# Download and install Python 3.11 from source
-RUN wget https://www.python.org/ftp/python/3.11.2/Python-3.11.2.tgz \
-    && tar -xf Python-3.11.2.tgz \
-    && cd Python-3.11.2 \
-    && ./configure \
-    && make \
-    && make install \
-    && cd .. \
-    && rm -rf Python-3.11.2* \
-    && apt-get purge -y --auto-remove \
-    build-essential \
-    libssl-dev \
-    zlib1g-dev \
-    libncurses5-dev \
-    libncursesw5-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    libgdbm-dev \
-    libdb5.3-dev \
-    libbz2-dev \
-    libexpat1-dev \
-    liblzma-dev \
-    tk-dev \
-    wget
-
-# Set Python 3 as default
-RUN ln -sf /usr/local/bin/python3.11 /usr/bin/python
-
-# Install pip for Python 3.11 using curl
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
-    && python3.11 get-pip.py \
-    && rm get-pip.py
-
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
 # Copy and install requirements
 COPY requirements.txt .
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
 COPY . .
 
+# Set environment variable for Flask
+ENV FLASK_APP=server.py
+
+# Define a build-time variable for the Stripe API key
+ARG STRIPE_API_KEY
+
+# Set the Stripe API key environment variable from the build argument
+ENV STRIPE_API_KEY=${STRIPE_API_KEY}
+
 # Specify the command to run the server
-CMD ["export", "FLASK_APP=server.py", "&&", "flask", "run", "--port=4242"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=4242"]
