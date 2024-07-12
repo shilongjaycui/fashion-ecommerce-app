@@ -14,6 +14,7 @@
     transform: translateY(-20%);
     opacity: 0;
     visibility: hidden;
+    text-align: center;
   }
 
 .shopping-cart.visible {
@@ -37,7 +38,7 @@
 .shopping-cart-header-title {
   flex-grow: 1;
   text-align: center;
-  font-size: 0.5cm;
+  font-size: 24px; /* Larger font size */
   font-weight: bold;
   color: #333;
 }
@@ -62,6 +63,83 @@
   border-bottom: 1px solid #ddd;
 }
 
-.shopping-cart li:last-child {
-  border-bottom: none;
+.empty-cart-message {
+  margin-top: 50px; /* Adjust margin top to center the message vertically */
+}
+
+.empty-cart-message p {
+  color: #007bff; /* Blue color */
+  font-size: 18px; /* Adjust font size */
+}
+
+.cart-items-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-item {
+  margin-bottom: 20px; /* Increased margin between items */
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px; /* Increased padding between item details */
+}
+
+.cart-item-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-info {
+  flex: 1; /* Takes up all available space */
+}
+
+.item-count,
+.item-total-cost {
+  flex: 0 0 auto; /* Does not grow, does not shrink, initial size */
+  margin-left: 10px; /* Adjust spacing between elements */
+}
+
+.remove-btn-container {
+  margin-top: 20px; /* Increased space between item details and Remove button */
+}
+
+.remove-btn {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 8px 16px; /* Adjust button padding */
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cart-summary {
+  margin-top: 20px;
+}
+
+.cart-summary .total-message {
+  font-size: 20px; /* Larger font size */
+  font-weight: bold; /* Bold text */
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-btn,
+.clear-cart-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.checkout-btn {
+  margin-right: 10px;
+}
+
+.clear-cart-btn {
+  margin-left: 10px;
 }

@@ -34,7 +34,7 @@ make build-server
 
 2. Run the server
 ```
-make run-server
+make run-server-locally
 ```
 
 3. Build the client app
@@ -44,10 +44,23 @@ make build-client
 
 4. Run the client app
 ```
-make run-client
+make run-client-locally
 ```
 
 5. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+
+## Running the web app in Docker containers
+
+1. Build and spin up both the backend container and the frontend container
+```
+docker-compose up --build
+```
+
+2. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+3. Tear down the containers after use
+```
+docker-compose down
+```
 
 ## Next steps
 - Create the `Product` prop instances from a database instead of hard-coding them
