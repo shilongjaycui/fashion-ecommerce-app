@@ -10,3 +10,9 @@ test-server:
 
 run-server:
 	export FLASK_APP=server.py && flask run --port=4242
+
+containerize-server:
+	docker build -t containerized-backend .
+
+run-containerized-server:
+	docker run -p 4242:4242 containerized-backend
