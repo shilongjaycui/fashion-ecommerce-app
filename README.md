@@ -51,9 +51,9 @@ To showcase Stripe payments' capabilities
    ```
    $ make run-server-locally
    ```
-7. Navigate into the web app's client:
+7. In a separate terminal, navigate into the web app's client:
    ```
-   $ cd ../frontend
+   $ cd stripe-demo-app/frontend
    ```
 8. Build the client app:
    ```
