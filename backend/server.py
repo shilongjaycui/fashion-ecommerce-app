@@ -17,7 +17,7 @@ stripe.api_key = os.environ["STRIPE_API_KEY"]
 app = Flask(
     __name__,
     static_url_path='',
-    static_folder='public',
+    static_folder='../frontend/public',
 )
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
