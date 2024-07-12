@@ -43,6 +43,3 @@ jobs:
 
     - name: Run TypeScript linting
       run: make lint-client
-
-    - name: Run React tests
-      run: make test-client

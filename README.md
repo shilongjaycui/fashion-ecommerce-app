@@ -15,12 +15,12 @@ To showcase Stripe payments' capabilities
 
 ## How (implementation)
 - [x] version control: Git, GitHub
-- [ ] backend: Python, Stripe SDK's APIs
-  - [ ] Stripe Checkout: redirect customers to a Stripe-hosted payment page
-- [ ] frontend: HTML, TailwindCSS, React with TypeScript
-- [ ] CI/CD: GitHub Actions
-  - [ ] linting
-  - [ ] testing: pytest, React Testing Library
+- [x] backend: Python, Stripe SDK's APIs
+  - [x] Stripe Checkout: redirect customers to a Stripe-hosted payment page
+- [ ] frontend: HTML, CSS, React with TypeScript
+- [x] CI/CD: GitHub Actions
+  - [x] linting
+  - [x] testing: pytest
 - [ ] deployment: AWS Cloud Development Kit
 - [ ] containerization: Docker
 - [ ] monitoring: Datadog
@@ -54,3 +54,4 @@ make run-client
 - Use [Tailwind CSS](https://tailwindcss.com/) so we can eliminate all the `.css` files
 - Make the web app compatible with tablets and smartphones
 - Decide to have the `ShoppingCart.tsx` component be a child component of whether the `App.tsx` component or the `Header.tsx` component. Not sure which approach improves debuggability at the moment
+- Test the React components, props, and states by writing unit tests using the [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
