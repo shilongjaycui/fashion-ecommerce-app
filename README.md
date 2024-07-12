@@ -45,19 +45,19 @@ To showcase Stripe payments' capabilities
    ```
 5. Build the server:
    ```
-   make build-server
+   $ make build-server
    ```
 6. Run the server:
    ```
-   make run-server-locally
+   $ make run-server-locally
    ```
 7. Build the client app:
    ```
-   make build-client
+   $ make build-client
    ```
 8. Run the client app:
    ```
-   make run-client-locally
+   $ make run-client-locally
    ```
 
 1. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
@@ -74,12 +74,12 @@ To showcase Stripe payments' capabilities
    ```
 3. Build and spin up both the backend container and the frontend container:
    ```
-   docker-compose up --build
+   $ docker-compose up --build
    ```
 4. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
 5. Tear down the containers after use:
    ```
-   docker-compose down
+   $ docker-compose down
    ```
 
 ## Next steps
