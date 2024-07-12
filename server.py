@@ -6,7 +6,7 @@ Stripe Sample.
 Python 3.6 or newer required.
 """
 import os
-from flask import Flask, redirect, request, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import stripe
 import logging
@@ -19,7 +19,7 @@ app = Flask(
     static_url_path='',
     static_folder='public',
 )
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # Allow requests from localhost:3000
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 PORT = "4242"
 DOMAIN = f'http://localhost:{PORT}'
@@ -33,7 +33,7 @@ def create_checkout_session():
     data = request.get_json()
     logging.info(f"Request data: {data}")
     cart_items = data['cartItems']
-    
+
     line_items = []
     for _, cart_item in cart_items.items():
         item = cart_item['item']
