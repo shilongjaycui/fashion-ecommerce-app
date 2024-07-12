@@ -126,20 +126,22 @@
   align-items: center;
 }
 
-.checkout-btn,
-.clear-cart-btn {
+.checkout-btn {
   background-color: #4CAF50;
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 4px;
-}
-
-.checkout-btn {
   margin-right: 10px;
 }
 
 .clear-cart-btn {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
   margin-left: 10px;
 }

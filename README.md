@@ -17,7 +17,7 @@ To showcase Stripe payments' capabilities
 - [x] version control: Git, GitHub
 - [x] backend: Python, Stripe SDK's APIs
   - [x] Stripe Checkout: redirect customers to a Stripe-hosted payment page
-- [ ] frontend: HTML, CSS, React with TypeScript
+- [x] frontend: HTML, CSS, React with TypeScript
 - [x] CI/CD: GitHub Actions
   - [x] linting
   - [x] testing: pytest
