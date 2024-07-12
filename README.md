@@ -27,22 +27,22 @@ To showcase Stripe payments' capabilities
 
 ## Running the web app locally
 
-1. Build the server
+1. Build the server:
 ```
 make build-server
 ```
 
-2. Run the server
+2. Run the server:
 ```
 make run-server-locally
 ```
 
-3. Build the client app
+3. Build the client app:
 ```
 make build-client
 ```
 
-4. Run the client app
+4. Run the client app:
 ```
 make run-client-locally
 ```
@@ -51,13 +51,13 @@ make run-client-locally
 
 ## Running the web app in Docker containers
 
-1. Build and spin up both the backend container and the frontend container
+1. Build and spin up both the backend container and the frontend container:
 ```
 docker-compose up --build
 ```
 
 2. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
-3. Tear down the containers after use
+3. Tear down the containers after use:
 ```
 docker-compose down
 ```
