@@ -65,23 +65,39 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
         </button>
       </div>
       {Object.keys(cartItems).length === 0 ? (
-        <p>Your cart is empty</p>
+        <div className="empty-cart-message">
+          <p>Your cart is empty</p>
+        </div>
       ) : (
         <div>
-          <ul>
+          <ul className="cart-items-list">
             {Object.values(cartItems).map(({ item, count }) => (
-              <li key={item.imageLink}>
-                <span>{item.title} - ${item.price} x {count} = {item.price * count}</span>
-                <button onClick={() => onRemoveFromCart(item)}>Remove</button>
+              <li key={item.imageLink} className="cart-item">
+                <div className="cart-item-details">
+                  <div className="item-info">
+                    <span>{item.title}</span>
+                  </div>
+                  <div className="item-count">
+                    <span>{count}</span>
+                  </div>
+                  <div className="item-total-cost">
+                    <span>${(item.price * count).toFixed(2)}</span>
+                  </div>
+                  <div className="remove-btn-container">
+                    <button className="remove-btn" onClick={() => onRemoveFromCart(item)}>Remove</button>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
-          <div>
-            <p>Total: ${totalCost.toFixed(2)}</p>
-            <button onClick={handleCheckout}>
-              Checkout
-            </button>
-            <button onClick={() => onClearCart()}>Clear Shopping Cart</button>
+          <div className="cart-summary">
+            <p className="total-message">Total: ${totalCost.toFixed(2)}</p>
+            <div className="cart-buttons">
+              <button className="checkout-btn" onClick={handleCheckout}>
+                Checkout
+              </button>
+              <button className="clear-cart-btn" onClick={() => onClearCart()}>Clear Shopping Cart</button>
+            </div>
           </div>
         </div>
       )}
