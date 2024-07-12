@@ -5,6 +5,7 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^1.0.0",
     "@stripe/stripe-js": "^1.0.0",
+    "eslint": "^7.32.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-icons": "^5.2.1",

@@ -42,9 +42,7 @@ jobs:
       run: make build-client
 
     - name: Run TypeScript linting
-      run: |
-        npm install eslint
-        npx eslint src/**/*.tsx
+      run: make lint-client
 
     - name: Run React tests
-      run: npm test
+      run: make test-client

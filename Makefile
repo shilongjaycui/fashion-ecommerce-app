@@ -14,5 +14,12 @@ run-server:
 build-client:
 	npm install
 
+lint-client:
+	npm install eslint
+	npx eslint src/**/*.tsx
+
+test-client:
+	npm test
+
 run-client:
 	npm start
