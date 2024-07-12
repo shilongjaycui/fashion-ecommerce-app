@@ -3,8 +3,10 @@ build-server:
 	pip install -r requirements.txt
 
 lint-server:
-	pip install flake8
-	flake8 server.py
+	flake8 .
+
+test-server:
+	pytest
 
 run-server:
 	export FLASK_APP=server.py && flask run --port=4242

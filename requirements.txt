@@ -11,3 +11,6 @@ stripe==6.0.0
 toml==0.10.2
 Werkzeug==2.0.1
 flask-cors
+flake8
+pytest
+pytest-mock

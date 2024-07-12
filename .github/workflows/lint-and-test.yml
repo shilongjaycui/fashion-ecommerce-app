@@ -28,9 +28,7 @@ jobs:
       run: make lint-server
 
     - name: Run Python tests
-      run: |
-        pip install pytest
-        pytest
+      run: make test-server
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
