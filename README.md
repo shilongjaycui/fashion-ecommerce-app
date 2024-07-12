@@ -31,9 +31,9 @@ To showcase Stripe payments' capabilities
    ```
    $ git clone git@github.com:shilongjaycui/stripe-demo-app.git
    ```
-2. Navigate into the repo:
+2. Navigate into the web app's server:
    ```
-   $ cd stripe-demo-app
+   $ cd stripe-demo-app/backend
    ```
 3. Create a Python virtual environment:
    ```
@@ -51,16 +51,19 @@ To showcase Stripe payments' capabilities
    ```
    $ make run-server-locally
    ```
-7. Build the client app:
+7. Navigate into the web app's client:
+   ```
+   $ cd ../frontend
+   ```
+8. Build the client app:
    ```
    $ make build-client
    ```
-8. Run the client app:
+9. Run the client app:
    ```
    $ make run-client-locally
    ```
-
-1. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+10. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
 
 ## Running the web app in Docker containers
 
