@@ -14,10 +14,13 @@ import logging
 
 stripe.api_key = os.environ["STRIPE_API_KEY"]
 
+# Set the static folder based on the environment
+static_folder = os.environ.get('STATIC_FOLDER', '../frontend/public')
+
 app = Flask(
     __name__,
     static_url_path='',
-    static_folder='public',
+    static_folder=static_folder,
 )
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 

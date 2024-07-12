@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        STRIPE_API_KEY: ${STRIPE_API_KEY}
+    environment:
+      - FLASK_APP=server.py
+      - STRIPE_API_KEY=${STRIPE_API_KEY}
+      - STATIC_FOLDER=/app/static
+    ports:
+      - "4242:4242"
+    volumes:
+      - frontend_build:/app/static
+    container_name: backend
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - frontend_build:/app/build
+    container_name: frontend
+  
+volumes:
+  frontend_build:
