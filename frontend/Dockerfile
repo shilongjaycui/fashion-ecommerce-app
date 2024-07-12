@@ -16,5 +16,8 @@ COPY . .
 # Build the React app
 RUN npm run build
 
+# Expose the build output directory
+VOLUME /app/build
+
 # Specify the command to run the server
 CMD ["npm", "start"]

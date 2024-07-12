@@ -20,5 +20,11 @@ ARG STRIPE_API_KEY
 # Set the Stripe API key environment variable from the build argument
 ENV STRIPE_API_KEY=${STRIPE_API_KEY}
 
+# Set the static folder environment variable for Docker
+ENV STATIC_FOLDER=/app/static
+
+# Create a directory for static files
+RUN mkdir -p /app/static
+
 # Specify the command to run the server
 CMD ["flask", "run", "--host=0.0.0.0", "--port=4242"]

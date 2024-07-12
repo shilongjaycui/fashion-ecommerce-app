@@ -5,7 +5,7 @@ lint-client:
 	npm install eslint
 	npx eslint src/**/*.tsx
 
-run-client:
+run-client-locally:
 	npm start
 
 containerize-client:

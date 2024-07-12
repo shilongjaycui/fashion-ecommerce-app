@@ -22,7 +22,7 @@ To showcase Stripe payments' capabilities
   - [x] linting
   - [x] testing: pytest
 - [ ] deployment: AWS Cloud Development Kit
-- [ ] containerization: Docker
+- [x] containerization: Docker
 - [ ] monitoring: Datadog
 
 ## Running the web app locally

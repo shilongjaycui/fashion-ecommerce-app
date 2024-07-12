@@ -8,8 +8,8 @@ lint-server:
 test-server:
 	pytest
 
-run-server:
-	export FLASK_APP=server.py && flask run --port=4242
+run-server-locally:
+	export FLASK_APP=server.py && export STATIC_FOLDER=../frontend/public && flask run --port=4242
 
 containerize-server:
 	docker build -t containerized-backend .
