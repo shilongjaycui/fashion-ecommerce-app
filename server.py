@@ -26,6 +26,7 @@ DOMAIN = f'http://localhost:{PORT}'
 
 logging.basicConfig(level=logging.INFO)
 
+
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
     logging.info("Received request")
@@ -34,7 +35,7 @@ def create_checkout_session():
     cart_items = data['cartItems']
     
     line_items = []
-    for item_key, cart_item in cart_items.items():
+    for _, cart_item in cart_items.items():
         item = cart_item['item']
         count = cart_item['count']
         line_items.append({
@@ -53,8 +54,8 @@ def create_checkout_session():
             payment_method_types=['card'],
             line_items=line_items,
             mode='payment',
-            success_url=DOMAIN + '?success=true',
-            cancel_url=DOMAIN + '?canceled=true',
+            success_url=DOMAIN + '/success',
+            cancel_url=DOMAIN + '/canceled',
             # automatic_tax={'enabled': True},
         )
         logging.info(f"Checkout session created: {checkout_session.url}")
@@ -62,6 +63,16 @@ def create_checkout_session():
     except Exception as e:
         logging.error(f"Error creating checkout session: {e}")
         return jsonify(error=str(e)), 403
+
+
+@app.route('/success')
+def success():
+    return app.send_static_file('success.html')
+
+
+@app.route('/canceled')
+def canceled():
+    return app.send_static_file('canceled.html')
 
 
 if __name__ == '__main__':
