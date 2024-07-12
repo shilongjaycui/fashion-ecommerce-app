@@ -39,7 +39,7 @@ jobs:
         node-version: '16.20.2'
 
     - name: Install Node.js dependencies
-      run: npm install
+      run: make build-client
 
     - name: Run TypeScript linting
       run: |
