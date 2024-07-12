@@ -29,6 +29,8 @@ jobs:
       run: make lint-server
 
     - name: Run Python tests
+      env:
+        STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
       run: make test-server
 
     - name: Set up Node.js
