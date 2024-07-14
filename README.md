@@ -77,6 +77,7 @@ To showcase Stripe payments' capabilities
     $ make run-client-locally
     ```
 15. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+16. To simulate a payment, please put down the following credit card number: `4242 4242 4242 4242`
 
 ## Running the web app in Docker containers
 
@@ -88,12 +89,14 @@ To showcase Stripe payments' capabilities
    ```
    $ cd stripe-demo-app
    ```
-3. Build and spin up both the backend container and the frontend container:
+3. Create and save a Stripe API key by following steps 6 through 10 [above](#running-the-web-app-locally).
+4. Build and spin up both the backend container and the frontend container:
    ```
    $ docker-compose up --build
    ```
-4. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
-5. Tear down the containers after use:
+5. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+6. To simulate a payment, please put down the following credit card number: `4242 4242 4242 4242`
+7. Tear down the containers after use:
    ```
    $ docker-compose down
    ```
