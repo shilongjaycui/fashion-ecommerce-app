@@ -50,27 +50,33 @@ To showcase Stripe payments' capabilities
 6. Create a Stripe account [here](https://dashboard.stripe.com/login).
 7. (Recommended) Turn your Stripe account to test mode.
 8. Create and copy a Stripe API secret key [here](https://dashboard.stripe.com/test/apikeys):
-9. Add the Stripe API secret key to your terminal session as an environment variable:
-   ```
-   $ export STRIPE_API_KEY=<your-stripe-api-secret-key>
-   ```
-10. Run the server:
-   ```
-   $ make run-server-locally
-   ```
-11. In a separate terminal session, navigate into the web app's client:
-   ```
-   $ cd stripe-demo-app/frontend
-   ```
-12. Build the client app:
-   ```
-   $ make build-client
-   ```
-13. Run the client app:
-   ```
-   $ make run-client-locally
-   ```
-14. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+   ![Stripe API key webpage](./stripe_api_key_webpage.png)
+9.  Add the Stripe API secret key to your terminal session as an environment variable:
+    ```
+    $ export STRIPE_API_KEY=<your-stripe-api-secret-key>
+    ```
+10. (Optional) Make the `STRIPE_API_KEY` environment variable available for all future terminal sessions by saving it to your `.zshrc` file:
+    ```
+    $ echo 'export STRIPE_API_KEY=<your-stripe-api-secret-key>' >> ~/.zshrc
+    $ source ~/.zshrc
+    ```
+11. Run the server:
+    ```
+    $ make run-server-locally
+    ```
+12. In a separate terminal session, navigate into the web app's client:
+    ```
+    $ cd stripe-demo-app/frontend
+    ```
+13. Build the client app:
+    ```
+    $ make build-client
+    ```
+14. Run the client app:
+    ```
+    $ make run-client-locally
+    ```
+15. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
 
 ## Running the web app in Docker containers
 
