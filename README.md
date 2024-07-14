@@ -50,27 +50,34 @@ To showcase Stripe payments' capabilities
 6. Create a Stripe account [here](https://dashboard.stripe.com/login).
 7. (Recommended) Turn your Stripe account to test mode.
 8. Create and copy a Stripe API secret key [here](https://dashboard.stripe.com/test/apikeys):
-9. Add the Stripe API secret key to your terminal session as an environment variable:
-   ```
-   $ export STRIPE_API_KEY=<your-stripe-api-secret-key>
-   ```
-10. Run the server:
-   ```
-   $ make run-server-locally
-   ```
-11. In a separate terminal session, navigate into the web app's client:
-   ```
-   $ cd stripe-demo-app/frontend
-   ```
-12. Build the client app:
-   ```
-   $ make build-client
-   ```
-13. Run the client app:
-   ```
-   $ make run-client-locally
-   ```
-14. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+   ![Stripe API key webpage](./stripe_api_key_webpage.png)
+9.  Add the Stripe API secret key to your terminal session as an environment variable:
+    ```
+    $ export STRIPE_API_KEY=<your-stripe-api-secret-key>
+    ```
+10. (Optional) Make the `STRIPE_API_KEY` environment variable available for all future terminal sessions by saving it to your `.zshrc` file:
+    ```
+    $ echo 'export STRIPE_API_KEY=<your-stripe-api-secret-key>' >> ~/.zshrc
+    $ source ~/.zshrc
+    ```
+11. Run the server:
+    ```
+    $ make run-server-locally
+    ```
+12. In a separate terminal session, navigate into the web app's client:
+    ```
+    $ cd stripe-demo-app/frontend
+    ```
+13. Build the client app:
+    ```
+    $ make build-client
+    ```
+14. Run the client app:
+    ```
+    $ make run-client-locally
+    ```
+15. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+16. To simulate a payment, please put down the following credit card number: `4242 4242 4242 4242`
 
 ## Running the web app in Docker containers
 
@@ -82,12 +89,14 @@ To showcase Stripe payments' capabilities
    ```
    $ cd stripe-demo-app
    ```
-3. Build and spin up both the backend container and the frontend container:
+3. Create and save a Stripe API key by following steps 6 through 10 [above](#running-the-web-app-locally).
+4. Build and spin up both the backend container and the frontend container:
    ```
    $ docker-compose up --build
    ```
-4. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
-5. Tear down the containers after use:
+5. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+6. To simulate a payment, please put down the following credit card number: `4242 4242 4242 4242`
+7. Tear down the containers after use:
    ```
    $ docker-compose down
    ```
