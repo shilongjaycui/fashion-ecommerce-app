@@ -57,7 +57,7 @@ To showcase Stripe payments' capabilities
     ```
 10. (Optional) Make the `STRIPE_API_KEY` environment variable available for all future terminal sessions by saving it to your `.zshrc` file:
     ```
-    $ echo 'export STRIPE_API_KEY=<your-stripe-api-secret-key>' >> ~/.zshrc
+    $ echo '' >> ~/.zshrc && echo 'export STRIPE_API_KEY=<your-stripe-api-secret-key>' >> ~/.zshrc
     $ source ~/.zshrc
     ```
 11. Run the server:
